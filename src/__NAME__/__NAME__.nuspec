@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>__NAME__</id>
+    <version>1.0.0</version>
+    <authors>Splasherstech</authors>
+	<description>__NAME__</description>
+  </metadata>
+	<files>
+		<file src="*" exclude="packages.config;*.cs;*.csproj;*.user" />
+		<file src="bin\**" exclude="**\*.pdb;**\*.dll.config" target="bin" />
+		<file src="..\..\database\**" target="Database" />
+		<file src="Images\**" target="Images" />
+		<file src="Scripts\**" target="Scripts" />
+		<file src="Views\**" exclude="**\*.cs" target="Views" />
+		<file src="Content\**" exclude="**\*.cs" target="Content" />
+	</files>
+  
+</package>
