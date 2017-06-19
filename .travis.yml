@@ -1,0 +1,6 @@
+language: csharp
+solution: src/__NAME__.sln
+install:
+  - nuget restore -SolutionDirectory src/ -OutputDirectory lib/ -Verbosity detailed
+script:
+  - xbuild /p:Configuration=Release src/__NAME__.sln

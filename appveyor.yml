@@ -1,0 +1,28 @@
+version: 1.0.{build}-{branch}
+
+environment:
+  access_token:
+    secure: NvZmsUuN1WoWkJyd79gkazj0/XJp/Vr7iy4+gwIShvt2QIEDcF3ORJs4z3IwQqXW
+
+install:
+  - nuget restore "src\__NAME__.sln"
+  - set PATH=C:\Ruby22\bin;%PATH%
+  - gem install warmup
+
+build:
+  verbosity: minimal
+
+on_success:
+  - dir
+  - warmup https://github.com/taiwofasae/mvctemplate HelloWorld
+  - cd HelloWorld
+  - git init
+  - git remote add origin https://github.com/taiwofasae/mvctemplate-sample.git
+  - git config --global credential.helper store
+  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+  - git config --global user.email "system@taiwofasae.com"
+  - git config --global user.name "System TaiFasae"
+  - git add .
+  - git commit -m "Testing branch $env:APPVEYOR_REPO_BRANCH commit by $env:APPVEYOR_REPO_COMMIT_AUTHOR"
+  - git status
+  - git push -u origin master
